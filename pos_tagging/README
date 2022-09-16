@@ -1,0 +1,21 @@
+This package includes scripts for training (train_hmm.py), running (viterbi.pl), 
+and evaluating (tag_acc.py) HMMs for sequence tagging.  Each script is documented on its own.  
+Here's a toy example to check that things work.
+
+Train a bigram HMM tagger from sections 2-21 of the Penn Treebank:
+
+  # Python:
+  python train_hmm.py data/ptb.2-21.tgs ptb.2-21.txt > my.hmm
+
+Run the Viterbi algorithm to tag some data:
+
+  perl viterbi.pl my.hmm < data/ptb.22.txt > my.out
+
+Evaluate:
+
+  python tag_acc.py data/ptb.22.tgs my.out
+
+Output should be as follows, modulo floating point differences:
+
+error rate by word:      0.0540917815389984 (2170 errors out of 40117)
+error rate by sentence:  0.655882352941176 (1115 errors out of 1700)
